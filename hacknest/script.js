@@ -50,7 +50,7 @@
   document.querySelectorAll('[data-close-modal]').forEach(function(b){ b.addEventListener('click', closeModal); });
   document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
   var projForm = document.getElementById('createProjectForm');
-  if(projForm) projForm.addEventListener('submit', function(e){ e.preventDefault(); closeModal(); showToast('Thanks! Project posting opens when SkillSync launches.'); projForm.reset(); });
+  if(projForm) projForm.addEventListener('submit', function(e){ e.preventDefault(); closeModal(); showToast('Thanks! Project posting opens when hacknest launches.'); projForm.reset(); });
 
   // forms
   ['waitlistForm','newsletterForm'].forEach(function(id){

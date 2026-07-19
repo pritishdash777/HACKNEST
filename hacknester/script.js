@@ -1,4 +1,11 @@
+const supabaseUrl = "https://yhipubroumcspclpybxz.supabase.co";
 
+const supabaseKey = "sb_publishable_OvHOiX9o3CPHIRqPEhvLow_JJJkCsPM";
+
+const supabaseClient = window.supabase.createClient(
+    supabaseUrl,
+    supabaseKey
+);
 (function(){
   "use strict";
 
@@ -75,3 +82,46 @@
   }, {threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 })();
+async function signUp() {
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const message = document.getElementById('message');
+
+    const { data, error } = await supabase.auth.signUp({
+        email,
+        password
+    });
+
+    if(error){
+        message.style.color = 'red';
+        message.textContent = error.message;
+        return;
+    }
+
+    message.style.color = '#34e5a8';
+    message.textContent =
+        "Account created! Check your email for verification.";
+}
+
+async function signIn() {
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const message = document.getElementById('message');
+
+    const { data, error } =
+        await supabase.auth.signInWithPassword({
+            email,
+            password
+        });
+
+    if(error){
+        message.style.color = 'red';
+        message.textContent = error.message;
+        return;
+    }
+
+    message.style.color = '#34e5a8';
+    message.textContent = "Logged in successfully!";
+}
